@@ -1,8 +1,8 @@
-from Crypto.Cipher import Blowfish
+from twofish import Twofish
 from Crypto import Random
 from struct import pack
 
-class BlowfishExample:
+class TwofishExample:
     """
     A class to represent an BlowfishExample.
 
@@ -16,13 +16,10 @@ class BlowfishExample:
     """
     def __init__(self):
         """
-        Constructs the Blowfish object.
+        Constructs the TwofishExample object.
         """
-        self.bs = Blowfish.block_size
-        self.key = b'FSMF73R873YM1872Y21M8721Y7821CR712G'
-        self.iv = Random.new().read(self.bs)
-        self.encryptor = Blowfish.new(self.key, Blowfish.MODE_CFB, self.iv)
-        self.decryptor = Blowfish.new(self.key, Blowfish.MODE_CFB, self.iv)
+        self.key = b'FSMF73R873YM1872Y'
+        self.tf = Twofish(self.key)
 
     def encrypt(self, msg):
         """
@@ -33,7 +30,7 @@ class BlowfishExample:
         msg : str
             Message to be encrypted
         """
-        return self.encryptor.encrypt(msg.encode('utf_8'))
+        return self.tf.encrypt(msg)
 
     def decrypt(self, encrypted):
         """
@@ -44,4 +41,4 @@ class BlowfishExample:
         encrypted : bytearray
             Encrypted message to be decrypted
         """
-        return self.decryptor.decrypt(encrypted)
+        return self.tf.decrypt(encrypted).decode()
