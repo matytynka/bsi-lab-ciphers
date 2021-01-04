@@ -34,7 +34,7 @@ class RSAExample:
         msg : str
             Message to be encrypted
         """
-        return self.encryptor.encrypt(msg.encode('utf_8'))
+        return self.encryptor.encrypt(msg)
 
     def decrypt(self, encrypted):
         """

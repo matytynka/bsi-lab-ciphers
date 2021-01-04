@@ -1,10 +1,8 @@
 from twofish import Twofish
-from Crypto import Random
-from struct import pack
 
 class TwofishExample:
     """
-    A class to represent an BlowfishExample.
+    A class to represent an TwofishExample.
 
     METHODS
     -------
