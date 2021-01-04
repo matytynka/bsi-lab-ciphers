@@ -8,11 +8,8 @@ class DSAExample:
 
     METHODS
     -------
-    encrypt(msg):
-        Signs the msg and returns it.
-
-    decrypt(encrypted):
-        Verifies the encrypted msg and returns it.
+    sign_and_verify(msg):
+        Signs and verifies the msg and returns it.
     """
     def __init__(self):
         """
@@ -29,7 +26,7 @@ class DSAExample:
         Parameters
         ----------
         msg : str
-            Message to be encrypted
+            Message to be verified
         """
         hash_obj = SHA256.new(msg.encode('utf-8'))
         signature = self.signer.sign(hash_obj)
