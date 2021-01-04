@@ -1,11 +1,10 @@
-from Crypto.PublicKey import RSA
-from Crypto.Cipher import PKCS1_OAEP
-import ast
+from Crypto.Cipher import Blowfish
+from Crypto import Random
+from struct import pack
 
-
-class RSAExample:
+class BlowfishExample:
     """
-    A class to represent an RSAExample
+    A class to represent an BlowfishExample.
 
     METHODS
     -------
@@ -15,15 +14,15 @@ class RSAExample:
     decrypt(encrypted):
         Decrypts the encrypted msg and returns it.
     """
-
     def __init__(self):
         """
         Constructs the RSAExample object.
         """
-        self.key = RSA.generate(2048)
-        self.public_key = self.key.publickey()
-        self.encryptor = PKCS1_OAEP.new(self.public_key)
-        self.decryptor = PKCS1_OAEP.new(self.key)
+        self.bs = Blowfish.block_size
+        self.key = b'FSMF73R873YM1872Y21M8721Y7821CR712G'
+        self.iv = Random.new().read(self.bs)
+        self.encryptor = Blowfish.new(self.key, Blowfish.MODE_CFB, self.iv)
+        self.decryptor = Blowfish.new(self.key, Blowfish.MODE_CFB, self.iv)
 
     def encrypt(self, msg):
         """
@@ -45,4 +44,4 @@ class RSAExample:
         encrypted : bytearray
             Encrypted message to be decrypted
         """
-        return self.decryptor.decrypt(ast.literal_eval(str(encrypted)))
+        return self.decryptor.decrypt(encrypted)
