@@ -1,6 +1,7 @@
 from ciphers.RSAExample import RSAExample
 from ciphers.BlowfishExample import BlowfishExample
 from ciphers.DSAExample import DSAExample
+from ciphers.AESExample import AESExample
 
 
 def show_cipher(cipher, msg):
@@ -11,7 +12,7 @@ def show_cipher(cipher, msg):
     print('Decrypted message: ', decrypted)
 
 
-def show_DSA(cipher, msg):
+def show_verify(cipher, msg):
     print('Message to sign: ', msg)
     cipher.sign_and_verify(msg)
 
@@ -28,7 +29,8 @@ def main():
             cipher_choice = input("Which cipher do you want to see?\n"
                                   "1. RSA\n"
                                   "2. Blowfish\n"
-                                  "3. DSA\n")
+                                  "3. DSA\n"
+                                  "4. AES\n")
             message = input("Please enter a message to encrypt: ")
 
             if int(cipher_choice) == 1:
@@ -36,7 +38,9 @@ def main():
             elif int(cipher_choice) == 2:
                 show_cipher(BlowfishExample(), message)
             elif int(cipher_choice) == 3:
-                show_DSA(DSAExample(), message)
+                show_verify(DSAExample(), message)
+            elif int(cipher_choice) == 4:
+                show_verify(AESExample(), message)
 
         elif int(what_to_do) == 2:
             print("Cipher benchmark")
