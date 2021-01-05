@@ -4,7 +4,7 @@ from Crypto.Hash import SHA256
 
 class DSAExample:
     """
-    A class to represent an RSAExample
+    A class to represent an DSAExample
 
     METHODS
     -------
@@ -13,7 +13,7 @@ class DSAExample:
     """
     def __init__(self):
         """
-        Constructs the RSAExample object.
+        Constructs the DSAExample object.
         """
         self.key = DSA.generate(2048)
         self.signer = DSS.new(self.key, 'fips-186-3')
@@ -23,10 +23,10 @@ class DSAExample:
         """
         Verifies and signs the msg.
 
-        Parameters
+        PARAMETERS
         ----------
-        msg : str
-            Message to be verified
+        :param msg : Message to be verified
+        :type msg : str
         """
         hash_obj = SHA256.new(msg.encode('utf-8'))
         signature = self.signer.sign(hash_obj)

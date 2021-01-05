@@ -1,5 +1,6 @@
 from twofish import Twofish
 
+
 class TwofishExample:
     """
     A class to represent an TwofishExample.
@@ -23,10 +24,15 @@ class TwofishExample:
         """
         Encrypts the msg.
 
-        Parameters
+        PARAMETERS
         ----------
-        msg : str
-            Message to be encrypted
+        :param msg : Message to be encrypted
+        :type msg : str
+
+        RETURNS
+        -------
+        :returns encrypted message
+        :rtype bytearray
         """
         return self.tf.encrypt(msg)
 
@@ -34,9 +40,14 @@ class TwofishExample:
         """
         Decrypts the encrypted message.
 
-        Parameters
+        PARAMETERS
         ----------
-        encrypted : bytearray
-            Encrypted message to be decrypted
+        :param encrypted : Encrypted message to be decrypted
+        :type encrypted : bytearray
+
+        RETURNS
+        -------
+        :returns decrypted message
+        :rtype str
         """
         return self.tf.decrypt(encrypted).decode()

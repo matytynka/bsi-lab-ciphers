@@ -1,3 +1,15 @@
+"""
+Author: Wojciech Skarbek
+Library: PyCryptodome
+
+Following file contains implementation of encryption and decryption using RSA
+algorithm. RSA is public-key cryptosystem that is used for secure data transmission.
+Encryption key is public and the decryption key is kept secret (private).
+Messages can be encrypted by anyone, but can only be decoded by someone who
+knows the private key.
+"""
+
+
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 import ast
@@ -29,20 +41,30 @@ class RSAExample:
         """
         Encrypts the msg.
 
-        Parameters
+        PARAMETERS
         ----------
-        msg : str
-            Message to be encrypted
+        :param msg : Message to be encrypted
+        :type msg : str
+
+        RETURNS
+        -------
+        :returns encrypted message
+        :rtype bytearray
         """
-        return self.encryptor.encrypt(msg)
+        return self.encryptor.encrypt(msg.encode("utf-8"))
 
     def decrypt(self, encrypted):
         """
         Decrypts the encrypted message.
 
-        Parameters
+        PARAMETERS
         ----------
-        encrypted : bytearray
-            Encrypted message to be decrypted
+        :param encrypted : Encrypted message to be decrypted
+        :type encrypted : bytearray
+
+        RETURNS
+        -------
+        :returns decrypted message
+        :rtype str
         """
         return self.decryptor.decrypt(ast.literal_eval(str(encrypted)))

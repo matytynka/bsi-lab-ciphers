@@ -1,5 +1,6 @@
 from Crypto.Cipher import AES
 
+
 class AESExample:
     """
     A class to represent an RSAExample
@@ -20,15 +21,14 @@ class AESExample:
         self.signer = AES.new(self.key, AES.MODE_EAX)
         self.verifier = AES.new(self.key, AES.MODE_EAX, nonce=self.signer.nonce)
 
-
     def sign_and_verify(self, msg):
         """
         Verifies and signs the msg.
 
-        Parameters
+        PARAMETERS
         ----------
-        msg : str
-            Message to be verified
+        :param msg : Message to be verified
+        :type msg : str
         """
         ciphertext, tag = self.signer.encrypt_and_digest(msg.encode('utf-8'))
         plaintext = self.verifier.decrypt(ciphertext)

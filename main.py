@@ -3,9 +3,18 @@ from ciphers.BlowfishExample import BlowfishExample
 from ciphers.DSAExample import DSAExample
 from ciphers.AESExample import AESExample
 from ciphers.TwofishExample import TwofishExample
+import time
 
 
 def show_cipher(cipher, msg):
+    """
+    Shows a cipher
+
+    PARAMETERS
+    ----------
+    :param cipher: cipher to show
+    :param msg: message to encrypt and decrypt
+    """
     print('Message to encrypt: ', msg)
     encrypted = cipher.encrypt(msg)
     print('Encrypted message: ', encrypted)
@@ -14,8 +23,44 @@ def show_cipher(cipher, msg):
 
 
 def show_verify(cipher, msg):
+    """
+    Shows a verifier.
+
+    PARAMETERS
+    ----------
+    :param cipher:
+    :param msg:
+    """
     print('Message to sign: ', msg)
     cipher.sign_and_verify(msg)
+
+
+def benchmark():
+    """
+    Benchmarks RSA, Blowfish, DSA and AES speed.
+    """
+    message = "Wiadomosc testowa"
+    start = time.time()
+    show_cipher(RSAExample(), message)
+    stop = time.time()
+    rsa_time = stop - start
+    start = time.time()
+    show_cipher(BlowfishExample(), message)
+    stop = time.time()
+    blowfish_time = stop - start
+    start = time.time()
+    show_verify(DSAExample(), message)
+    stop = time.time()
+    dsa_time = stop - start
+    start = time.time()
+    show_verify(AESExample(), message)
+    stop = time.time()
+    aes_time = stop - start
+    print("Benchmark done:\n"
+          "RSA: ", rsa_time, "s\n",
+          "Blowfish: ", blowfish_time, "s\n",
+          "DSA: ", dsa_time, "s\n",
+          "AES: ", aes_time, "s\n")
 
 
 def main():
@@ -47,7 +92,7 @@ def main():
                 show_cipher(TwofishExample(), b'testowa wiadomos')
 
         elif int(what_to_do) == 2:
-            print("Cipher benchmark")
+            benchmark()
 
         elif int(what_to_do) == 3:
             run = False
