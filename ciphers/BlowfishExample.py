@@ -64,3 +64,38 @@ class BlowfishExample:
         :rtype str
         """
         return self.decryptor.decrypt(encrypted)
+
+    def salt_encrypt(self, msg, salt):
+        """
+        Encrypts the msg with appended salt.
+
+        PARAMETERS
+        ----------
+        :param msg : Message to be encrypted
+        :param salt : salt for encryption
+        :type salt str
+
+        RETURNS
+        -------
+        :returns encrypted message
+        :rtype bytearray
+        """
+        return self.encrypt(msg+salt)
+
+    def salt_decrypt(self, encrypted, salt):
+        """
+        Decrypts the encrypted message with appended salt.
+
+        PARAMETERS
+        ----------
+        :param encrypted : Encrypted message to be decrypted
+        :type encrypted : bytearray
+        :param salt : salt for encryption
+        :type salt str
+
+        RETURNS
+        -------
+        :returns decrypted message
+        :rtype str
+        """
+        return self.decrypt(encrypted).replace(salt.encode(), "".encode())

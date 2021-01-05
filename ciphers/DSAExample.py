@@ -49,3 +49,22 @@ class DSAExample:
             print("The message is authentic.")
         except ValueError:
             print("The message is not authentic.")
+
+    def salt_sign_and_verify(self, msg, salt):
+        """
+        Encrypts the msg with appended salt.
+
+        PARAMETERS
+        ----------
+        :param msg : Message to be encrypted
+        :param salt : salt for encryption
+        :type salt str
+
+        """
+        hash_obj = SHA256.new((msg+salt).encode('utf-8'))
+        signature = self.signer.sign(hash_obj).replace(salt.encode(), "".encode())
+        try:
+            self.verifier.verify(hash_obj, signature)
+            print("The message is authentic.")
+        except ValueError:
+            print("The message is not authentic.")

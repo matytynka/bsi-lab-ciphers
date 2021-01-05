@@ -49,3 +49,22 @@ class AESExample:
             print("The message is authentic: ", plaintext)
         except ValueError:
             print("Key incorrect or message corrupted")
+
+    def salt_sign_and_verify(self, msg, salt):
+        """
+        Encrypts the msg with appended salt.
+
+        PARAMETERS
+        ----------
+        :param msg : Message to be encrypted
+        :param salt : salt for encryption
+        :type salt str
+
+        """
+        ciphertext, tag = self.signer.encrypt_and_digest((msg+salt).encode('utf-8'))
+        plaintext = self.verifier.decrypt(ciphertext).replace(salt.encode(), "".encode())
+        try:
+            self.verifier.verify(tag)
+            print("The message is authentic: ", plaintext)
+        except ValueError:
+            print("Key incorrect or message corrupted")

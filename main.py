@@ -24,6 +24,13 @@ from ciphers.DSAExample import DSAExample
 from ciphers.AESExample import AESExample
 from ciphers.TwofishExample import TwofishExample
 import time
+import string
+import random
+
+
+def get_random_alphanumeric_string(length):
+    letters_and_digits = string.ascii_letters + string.digits
+    return ''.join((random.choice(letters_and_digits) for i in range(length)))
 
 
 def show_cipher(cipher, msg):
@@ -42,6 +49,24 @@ def show_cipher(cipher, msg):
     print('Decrypted message: ', decrypted)
 
 
+def show_cipher_salt(cipher, msg):
+    """
+    Shows a cipher. Also uses salting
+
+    PARAMETERS
+    ----------
+    :param cipher: cipher to show
+    :param msg: message to encrypt and decrypt
+    """
+    salt = get_random_alphanumeric_string(12)
+    print('Salt: ', salt)
+    print('Message to encrypt: ', msg)
+    encrypted = cipher.salt_encrypt(msg, salt)
+    print('Encrypted message: ', encrypted)
+    decrypted = cipher.salt_decrypt(encrypted, salt)
+    print('Decrypted message: ', decrypted)
+
+
 def show_verify(cipher, msg):
     """
     Shows a verifier.
@@ -53,6 +78,21 @@ def show_verify(cipher, msg):
     """
     print('Message to sign: ', msg)
     cipher.sign_and_verify(msg)
+
+
+def show_verify_salt(cipher, msg):
+    """
+    Shows a verifier. Also uses salting
+
+    PARAMETERS
+    ----------
+    :param cipher:
+    :param msg:
+    """
+    salt = get_random_alphanumeric_string(12)
+    print('Salt: ', salt)
+    print('Message to sign: ', msg)
+    cipher.salt_sign_and_verify(msg, salt)
 
 
 def benchmark():
@@ -94,21 +134,33 @@ def main():
         if int(what_to_do) == 1:
             cipher_choice = input("Which cipher do you want to see?\n"
                                   "1. RSA\n"
-                                  "2. Blowfish\n"
-                                  "3. DSA\n"
-                                  "4. AES\n"
-                                  "5. Twofish\n")
+                                  "2. RSA + salting\n"
+                                  "3. Blowfish\n"
+                                  "4. Blowfish + salting\n"
+                                  "5. DSA\n"
+                                  "6. DSA + salting\n"
+                                  "7. AES\n"
+                                  "8. AES + salting\n"
+                                  "9. Twofish\n")
             message = input("Please enter a message to encrypt: ")
 
             if int(cipher_choice) == 1:
                 show_cipher(RSAExample(), message)
             elif int(cipher_choice) == 2:
-                show_cipher(BlowfishExample(), message)
+                show_cipher_salt(RSAExample(), message)
             elif int(cipher_choice) == 3:
-                show_verify(DSAExample(), message)
+                show_cipher(BlowfishExample(), message)
             elif int(cipher_choice) == 4:
-                show_verify(AESExample(), message)
+                show_cipher_salt(BlowfishExample(), message)
             elif int(cipher_choice) == 5:
+                show_verify(DSAExample(), message)
+            elif int(cipher_choice) == 6:
+                show_verify_salt(DSAExample(), message)
+            elif int(cipher_choice) == 7:
+                show_verify(AESExample(), message)
+            elif int(cipher_choice) == 8:
+                show_verify_salt(AESExample(), message)
+            elif int(cipher_choice) == 9:
                 show_cipher(TwofishExample(), b'testowa wiadomos')
 
         elif int(what_to_do) == 2:
