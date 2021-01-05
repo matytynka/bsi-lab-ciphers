@@ -1,3 +1,15 @@
+"""
+Author: Martyna Świerszcz
+Library: PyCryptodome
+
+Following file contains implementation of signing and verifying using Advanced Encryption Standard (AES).
+AES is based on a design principle known as a substitution–permutation network, and is efficient in both
+software and hardware.[9] Unlike its predecessor DES, AES does not use a Feistel network. AES is a variant
+of Rijndael, with a fixed block size of 128 bits, and a key size of 128, 192, or 256 bits. By contrast,
+Rijndael per se is specified with block and key sizes that may be any multiple of 32 bits, with a minimum of
+128 and a maximum of 256 bits.
+"""
+
 from Crypto.Cipher import AES
 
 

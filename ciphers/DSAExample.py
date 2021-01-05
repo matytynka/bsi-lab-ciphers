@@ -1,3 +1,16 @@
+"""
+Author: Martyna Świerszcz
+Library: PyCryptodome
+
+Following file contains implementation of signing and verifying using Digital Signature Algorithm (DSA).
+The algorithm uses a key pair consisting of a public key and a private key. The private key is used to
+generate a digital signature for a message, and such a signature can be verified by using the signer's
+corresponding public key. The digital signature provides message authentication (the receiver can verify
+the origin of the message), integrity (the receiver can verify that the message has not been modified
+since it was signed) and non-repudiation (the sender cannot falsely claim that they have not signed
+the message).
+"""
+
 from Crypto.PublicKey import DSA
 from Crypto.Signature import DSS
 from Crypto.Hash import SHA256
