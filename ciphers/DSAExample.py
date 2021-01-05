@@ -2,6 +2,7 @@ from Crypto.PublicKey import DSA
 from Crypto.Signature import DSS
 from Crypto.Hash import SHA256
 
+
 class DSAExample:
     """
     A class to represent an DSAExample

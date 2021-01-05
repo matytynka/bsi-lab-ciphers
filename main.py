@@ -1,3 +1,23 @@
+"""
+Authors: Wojciech Skarbek & Martyna Świerszcz
+
+Following module allows you to test implemented ciphers and benchmark them.
+It's a main .py file of 'Cipher' mini-project.
+
+METHODS
+-------
+show_cipher(cipher, msg):
+    Uses chose cipher to encrypt and decrtypt a message and show
+    the results.
+
+def show_verify(cipher, msg):
+    Uses chose signer to sign and verify a message and show the
+    results.
+
+def benchmark():
+    Benchmarks RSA, Blowfish, DSA and AES speed.
+"""
+
 from ciphers.RSAExample import RSAExample
 from ciphers.BlowfishExample import BlowfishExample
 from ciphers.DSAExample import DSAExample

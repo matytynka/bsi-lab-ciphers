@@ -1,3 +1,12 @@
+"""
+Author: Wojciech Skarbek
+Library: PyCryptodome
+
+Following file contains implementation of encryption and decryption using Blowfish
+algorithm. Blowfish is a symmetric-key block cipher. These days it's being replaced
+by much more modern AES. Nonetheless it's still used since it has good encryption
+rate in software and still no effective cryptanalysis of it has been found.
+"""
 from Crypto.Cipher import Blowfish
 from Crypto import Random
 

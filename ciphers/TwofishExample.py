@@ -1,3 +1,13 @@
+"""
+Author: Wojciech Skarbek
+Library: Twofish
+
+Following file contains implementation of encryption and decryption using Twofish
+algorithm. Twofish is a symmetric-key block cipher with a block size of 128 bits
+up to 256. Since Twofish is much slower on modern CPUs, it got completely replaced
+by AES and since it never has been patented it's reference implementation has been
+placed in the public domain.
+"""
 from twofish import Twofish
 
 
